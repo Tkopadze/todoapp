@@ -1,0 +1,109 @@
+
+      body {
+        background-color: #f8f8f8;
+        font-family: Arial, sans-serif;
+        font-size: 16px;
+        line-height: 1.5;
+        margin: 0;
+        padding: 0;
+      }
+
+      .wrap {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 20px;
+        padding: 30px;
+        width: 100%;
+        max-width: 600px;
+      }
+
+      .started {
+        font-size: 36px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        text-align: center;
+        color:black;
+      }
+
+      .addPhotoText {
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+        color: black;
+      }
+
+      .photoDiv {
+        border: 2px dashed #ccc;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100px;
+        height: 100px;
+        overflow: hidden;
+        margin-bottom: 20px;
+        cursor: pointer;
+        background-image: url(./../../photos/loginPhoto.png);
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .photoDiv:hover {
+        border-color: #5EFC8D;
+      }
+
+      .photoDiv input[type='file'] {
+        opacity: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        cursor: pointer;
+      }
+
+      .previewImg {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .name {
+        font-size: 20px;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .input {
+        border: 2px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        margin-bottom: 20px;
+        padding: 10px;
+        width: 100%;
+        max-width: 400px;
+      }
+
+      .SIGN-button {
+        background-color: #5EFC8D;
+        border: none;
+        border-radius: 5px;
+        color: #fff;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 10px 20px;
+        transition: background-color 0.3s ease;
+        width: 100%;
+        max-width: 200px;
+      }
+
+      .SIGN-button:hover {
+        background-color: #46be6f;
+      }
+   
