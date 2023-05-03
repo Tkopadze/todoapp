@@ -1,44 +1,53 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './TaskPage.css';
 import SubmitForm from '../../components/SubmitForm/SubmitForm';
 import TasksList from '../../components/TasksList/TasksList';
 import NavBar from '../../components/navigation/nav';
 
-class TaskPage extends React.Component{
+const TaskPage =(props)=> {
   
-  constructor(props){
-    super(props);
-    const storedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    const storedProfile = JSON.parse(localStorage.getItem('profile')) || {};
-    this.state = {
-      tasks: storedTasks,
-      name: localStorage.getItem('name') || "",
-      photo: localStorage.getItem('photo') || ""
-    };
+  const [name, setNamte] = useState(()=> localStorage.getItem('name') || "");
+  const [photo, setPhoto] = useState(()=> localStorage.getItem('photo') || "" );
+  const [storedTasks, setStoredTasks] = useState(JSON.parse(localStorage.getItem('tasks')) || []);
+  const [tasks, setTasks] = useState()
 
-    this.addTask = this.addTask.bind(this);
-    this.removeTask = this.removeTask.bind(this);
+
+
+  function addTask(task){
+    console.log(task)
+    let tempTasks = tasks;
+    tempTasks.push(task);
+    localStorage.setItem('tasks', JSON.stringify(tempTasks));
+    setTasks([...tempTasks]);
+    
+    // this.setState((prevState) => {
+    //  
+    //   localStorage.setItem('tasks', JSON.stringify(updatedTasks));
+    //   return { tasks: updatedTasks };
+    // });
   }
 
-  addTask(task){
-    this.setState((prevState) => {
-      const updatedTasks = [...prevState.tasks, task];
-      localStorage.setItem('tasks', JSON.stringify(updatedTasks));
-      return { tasks: updatedTasks };
-    });
-  }
-
-  removeTask(id){
-      const tasks = this.state.tasks.filter(element => (element.id !== id));
-      localStorage.setItem('tasks', JSON.stringify(tasks));
-      this.setState({ tasks: tasks });
+  function removeTask(id){
+      const _tasks = tasks.filter(element => (element.id !== id));
+      localStorage.setItem('tasks', JSON.stringify(_tasks));
+     setTasks(_tasks)
   }
 
  
-  componentDidMount() {
-    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
-    this.setState({ tasks });
-  }
+useEffect(() => {
+  const _tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  const photo =JSON.parse(localStorage.getItem('photo'));
+  console.log(photo);
+  setPhoto(photo);
+  setTasks(_tasks);
+
+
+}, [])
+
+  // componentDidMount() {
+  //  
+  //   this.setState({ tasks });
+  // }
 
   // componentDidUpdate(prevProps, prevState) {
   //   if (prevState.name !== this.state.name || prevState.photo !== this.state.photo) {
@@ -46,20 +55,20 @@ class TaskPage extends React.Component{
   //     localStorage.setItem('profile', JSON.stringify(profile));
   //   }
   // }
+  
 
-  render() {
-    const { name, photo } = this.state;
+
     return (
       <div className="taskWrap">
-         <NavBar name={this.props.name} photo={this.props.photo} />
+         <NavBar name={name} photo={photo} />
          
-         <SubmitForm addTask={this.addTask} />
-        <TasksList tasks={this.state.tasks || null} removeTask={this.removeTask} />
+         <SubmitForm addTask={addTask} />
+        <TasksList tasks={tasks || null} removeTask={removeTask} />
          
        
       </div>
     );
-  }
+  
 }
 
 export default TaskPage;

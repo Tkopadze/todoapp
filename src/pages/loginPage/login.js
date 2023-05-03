@@ -1,25 +1,5 @@
 
 
-// class login extends React.Component{
-
-//     render(){
-//         return(
-//             <body>
-//                 <div className="wrap">
-//                
-//                 
-//                 <input  type='file'/>             
-//                 <h2 className="name">fill in your NAME</h2>
-//                 <input className='input' ref={(a) => this._inputElement = a} placeholder='YOUR NAME' />
-//               
-//                 </div>
-//             </body>
-//         );
-//     }
-// }
-// export default login;
-
-
 import React, { useState } from 'react';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
@@ -30,13 +10,14 @@ function Login() {
   const [photo, setPhoto] = useState(null);
 
   const handleNameChange = (e) => {
-    
+    localStorage.setItem('name',e.target.value)
     setName(e.target.value);
   };
 
 
 
   const handlePhotoChange = (e) => {
+    localStorage.setItem('photo',JSON.stringify(e.target.value))
     setPhoto(URL.createObjectURL(e.target.files[0]));
    
   };
@@ -45,11 +26,11 @@ function Login() {
     
     e.preventDefault();
    
-    navigate('/taskPage',{ state: { name:name, photo :photo} });
+    navigate('/taskPage',{ params: { name:name, photo :photo} });
   };
 
   return (
-    <body>
+ 
       <div className="wrap">
         <h1 className="started">Get Started</h1>
         <h2 className="addPhotoText">add a photo</h2>
@@ -61,7 +42,7 @@ function Login() {
         <input className='input' type='text' value={name ||null} onChange={handleNameChange} placeholder='YOUR NAME' />
         <button className='SIGN-button' type='submit' onClick={handleSubmit} >SIGN IN</button>
       </div>
-    </body>
+    
   );
 }
 
