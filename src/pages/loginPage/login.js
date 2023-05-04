@@ -34,7 +34,7 @@ function Login() {
       <div className="wrap">
         <h1 className="started">Get Started</h1>
         <h2 className="addPhotoText">add a photo</h2>
-        <input className="photoDiv" type='file' onChange={handlePhotoChange}/>             
+        <input className="photoDiv" type='file'  onChange={handlePhotoChange}/>             
         {photo && <img className="previewImg" src={photo} alt="Preview" />}
 
                    

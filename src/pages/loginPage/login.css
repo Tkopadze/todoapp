@@ -57,15 +57,7 @@
         border-color: #5EFC8D;
       }
 
-      .photoDiv input[type='file'] {
-        opacity: 0;
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        left: 0;
-        top: 0;
-        cursor: pointer;
-      }
+     
 
       .previewImg {
         width: 100%;
@@ -106,4 +98,16 @@
       .SIGN-button:hover {
         background-color: #46be6f;
       }
-   
+      .photoDiv input[type='file'] {
+        opacity: 0 !important;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        cursor: pointer;
+      }
+      ::-webkit-file-upload-button {
+        display: none;
+     }
+  
